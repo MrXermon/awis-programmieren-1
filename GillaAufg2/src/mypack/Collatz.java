@@ -1,3 +1,9 @@
+/**
+ * Jan Gilla
+ * 17.09.2016
+ * Berechnung der Collatz Zahlen im definierten Bereich und verschiedener Kenngroessen.
+ */
+ 
 package mypack;
 
 import java.text.*;
