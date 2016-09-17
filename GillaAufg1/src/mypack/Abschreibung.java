@@ -10,57 +10,58 @@ import java.text.*;
 
 public class Abschreibung {
 
-	final double ANSCHKOSTEN = 21000;
-	final double PROZENTSATZ = 20;
-	final int NUTZDAUER = 7;
-
 	public static void main(String[] args) {
+
+		final double anschkosten = 21000;
+		final double prozentsatz = 20;
+		final int nutzdauer = 7;
+
 		double restBuchWert, abschreibung, wechselJahr;
 
 		/* Zuruecksetzen fuer Lineare Abschreibung */
-		restBuchWert = ANSCHKOSTEN;
+		restBuchWert = anschkosten;
 		abschreibung = 0;
 		System.out.println("Lineare Abschreibung:");
 		zeileTitel();
-		for (int j = 0; j < NUTZDAUER + 1; j++) {
-			abschreibung = ANSCHKOSTEN / NUTZDAUER;
-			restBuchWert = ANSCHKOSTEN - (j * ANSCHKOSTEN / NUTZDAUER);
+		for (int j = 0; j < nutzdauer + 1; j++) {
+			abschreibung = anschkosten / nutzdauer;
+			restBuchWert = anschkosten - (j * anschkosten / nutzdauer);
 			zeileAusgeben(j, abschreibung, restBuchWert, "");
 		}
 
 		/* Zuruecksetzen fuer Geometrisch-degressive Abschreibung */
-		restBuchWert = ANSCHKOSTEN;
+		restBuchWert = anschkosten;
 		abschreibung = 0;
 		System.out.println("Geometrisch-degressive Abschreibung:");
 		zeileTitel();
-		for (int j = 0; j < NUTZDAUER + 1; j++) {
+		for (int j = 0; j < nutzdauer + 1; j++) {
 			if (j == 0) {
 				abschreibung = 0;
 			} else {
-				abschreibung = restBuchWert * (PROZENTSATZ / 100);
+				abschreibung = restBuchWert * (prozentsatz / 100);
 				restBuchWert -= abschreibung;
 			}
 			zeileAusgeben(j, abschreibung, restBuchWert, "");
 		}
 
 		/* Zuruecksetzen auf Methodenwechsel Abschreibung */
-		restBuchWert = ANSCHKOSTEN;
+		restBuchWert = anschkosten;
 		abschreibung = 0;
-		wechselJahr = NUTZDAUER - (100 / PROZENTSATZ) + 1;
+		wechselJahr = nutzdauer - (100 / prozentsatz) + 1;
 		System.out.println("Methodenwechsel Abschreibung:");
 		zeileTitel();
-		for (int j = 0; j < NUTZDAUER + 1; j++) {
+		for (int j = 0; j < nutzdauer + 1; j++) {
 			if (j == 0) {
 				/* Ausnahmewert fuer NULL */
 				abschreibung = 0;
 			}
 			if (j > 0 && j <= wechselJahr) {
 				/* Geometrisch-degressive Abschreibung */
-				abschreibung = restBuchWert * PROZENTSATZ / 100;
+				abschreibung = restBuchWert * prozentsatz / 100;
 				restBuchWert -= abschreibung;
 			} else if (j == wechselJahr + 1) {
 				/* Berechnung der Abschreibung und Abzug im Wechseljahr */
-				abschreibung = restBuchWert / (NUTZDAUER - j + 1);
+				abschreibung = restBuchWert / (nutzdauer - j + 1);
 				restBuchWert -= abschreibung;
 			} else if (j > wechselJahr) {
 				/* Lineare Abschreibung */
