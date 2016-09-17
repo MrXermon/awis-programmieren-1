@@ -16,11 +16,11 @@ public class Abschreibung {
 		final double prozentsatz = 20;
 		final int nutzdauer = 7;
 
-		double restBuchWert, abschreibung, wechselJahr;
+		double restBuchWert = anschkosten; // Aktueller Restbuchwert
+		double abschreibung = 0; // Aktuelle Abschreibung
+		double wechselJahr = 0; // Jahr ab dem gewechselt wird
 
-		/* Zuruecksetzen fuer Lineare Abschreibung */
-		restBuchWert = anschkosten;
-		abschreibung = 0;
+		/* Start Lineare Abschreibung */
 		System.out.println("Lineare Abschreibung:");
 		zeileTitel();
 		for (int j = 0; j < nutzdauer + 1; j++) {

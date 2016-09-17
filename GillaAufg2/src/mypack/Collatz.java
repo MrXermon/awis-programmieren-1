@@ -3,7 +3,7 @@
  * 17.09.2016
  * Berechnung der Collatz Zahlen im definierten Bereich und verschiedener Kenngroessen.
  */
- 
+
 package mypack;
 
 import java.text.*;
@@ -11,11 +11,11 @@ import java.text.*;
 public class Collatz {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		final double STARTWERT = 10;
+		
 		double maxLaenge = 0, maxLaengeBei = 0, maxElemente = 0, maxElementeBei = 0, maxRelGroesse = 0,
 				maxRelGroesseBei = 0;
-
 		double n, aktuellElemente, aktuellHoechstes, aktuellRelGroesse;
 		boolean weiter = true;
 
