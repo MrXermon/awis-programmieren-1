@@ -10,11 +10,11 @@ import java.text.*;
 
 public class Abschreibung {
 
-	public static void main(String[] args) {
-		final double ANSCHKOSTEN = 21000;
-		final double PROZENTSATZ = 20;
-		final int NUTZDAUER = 7;
+	final double ANSCHKOSTEN = 21000;
+	final double PROZENTSATZ = 20;
+	final int NUTZDAUER = 7;
 
+	public static void main(String[] args) {
 		double restBuchWert, abschreibung, wechselJahr;
 
 		/* Zuruecksetzen fuer Lineare Abschreibung */
