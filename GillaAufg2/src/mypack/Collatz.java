@@ -84,6 +84,22 @@ public class Collatz {
 		ausgabe(maxLaenge, maxLaengeBei, maxElemente, maxElementeBei, maxRelGroesse, maxRelGroesseBei);
 	}
 
+	/**
+	 * Funktion zur schoenen Ausgabe der Ergebnisse
+	 * 
+	 * @param l
+	 *            Wert fuer die max. Laenge
+	 * @param lBei
+	 *            Startwert fuer die max. Laenge
+	 * @param e
+	 *            Wert fuer das max. Element
+	 * @param eBei
+	 *            Startwert fuer das max. Element
+	 * @param r
+	 *            Wert fuer die rel. Groesse
+	 * @param rBei
+	 *            Startwert fuer die rel. Groesse
+	 */
 	public static void ausgabe(double l, double lBei, double e, double eBei, double r, double rBei) {
 		DecimalFormat dezFormat = new DecimalFormat("#0.00");
 		System.out.println("Maximale Laenge: " + (int) l + " bei n = " + (int) lBei);

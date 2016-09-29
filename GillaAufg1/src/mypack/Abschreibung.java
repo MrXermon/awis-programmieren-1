@@ -77,14 +77,15 @@ public class Abschreibung {
 
 	/**
 	 * Zeile passend formatieren und ausgeben.
+	 * 
 	 * @param jhr
-	 * 	Wert fuer die Spalte Jahr
+	 *            Wert fuer die Spalte Jahr
 	 * @param abschr
-	 * 	Wert fuer die Spalte Abschreibung
+	 *            Wert fuer die Spalte Abschreibung
 	 * @param rbw
-	 * 	Wert fuer die Spalte Restuchwert
+	 *            Wert fuer die Spalte Restuchwert
 	 * @param txt
-	 * 	Wert, der ggf. an die Ausgabe angehaengt wird.
+	 *            Wert, der ggf. an die Ausgabe angehaengt wird.
 	 */
 	public static void zeileAusgeben(int jhr, double abschr, double rbw, String txt) {
 		DecimalFormat ausgFormat = new DecimalFormat("#,##0.00");
