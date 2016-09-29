@@ -6,7 +6,7 @@
 
 package mypack;
 
-import java.text.*;
+import java.text.DecimalFormat;
 
 public class Collatz {
 
@@ -15,20 +15,20 @@ public class Collatz {
 
 		double maxLaenge = 0; // Maximale Anzahl der Elemente zum Vergleichen
 		double maxLaengeBei = 0; // Speichern des zugehoergien n's
-		
-		double maxElemente = 0; // Maximaler Abstand zum Startwert zum Vergleichen
+
+		double maxElemente = 0; // Maximaler Abstand zum Startwert zum
+								// Vergleichen
 		double maxElementeBei = 0; // Speichern des zugehoergien n's
-		
+
 		double maxRelGroesse = 0; // Maximale Relative Groesse zum Vergleichen
 		double maxRelGroesseBei = 0; // Speichern des zugehoergien n's
-		
+
 		double n; // Zur Berechnung der Collatz-Folge verwendet
 		double aktuellElemente; // Zaehler der Elemente der aktuellen Folge
 		double aktuellHoechstes; // Hoechstes Element der aktuellen Folge
 		double aktuellRelGroesse; // Relative Groesse der aktuellen Folge
-		boolean weiter = true; // Beendet die Schleife, sobald das Ende erreicht ist
-
-		DecimalFormat dezFormat = new DecimalFormat("#0.00");
+		boolean weiter = true; // Beendet die Schleife, sobald das Ende erreicht
+								// ist
 
 		for (int i = 1; i <= startwert; i++) {
 			weiter = true;
@@ -37,24 +37,23 @@ public class Collatz {
 			aktuellHoechstes = i;
 			aktuellRelGroesse = 0;
 			do {
-				if (n % 2.0 == 0) {
-					/** Fall 1, gerade Zahl */
-					n = n / 2.0;
-				} else {
-					/** Fall 2, ungerade Zahl */
-					n = (3 * n) + 1;
-				}
-				
 				if ((int) n == 1) {
 					/** Folgenende erreicht */
-					aktuellElemente++;
 					weiter = false;
 				} else {
+					if (n % 2.0 == 0) {
+						/** Fall 1, gerade Zahl */
+						n = n / 2.0;
+					} else {
+						/** Fall 2, ungerade Zahl */
+						n = (3 * n) + 1;
+					}
 					aktuellElemente++;
 				}
-				
-				if (n > aktuellHoechstes)
+
+				if (n > aktuellHoechstes) {
 					aktuellHoechstes = n;
+				}
 			} while (weiter);
 			aktuellRelGroesse = aktuellHoechstes / i;
 
@@ -63,24 +62,32 @@ public class Collatz {
 				maxLaenge = aktuellElemente;
 				maxLaengeBei = i;
 			}
-			/** Vergleiche zur Determination der Kennzahl: Hoechstes Element der Folge */
+			/**
+			 * Vergleiche zur Determination der Kennzahl: Hoechstes Element der
+			 * Folge
+			 */
 			if ((aktuellHoechstes - i) > maxElemente) {
 				maxElemente = aktuellHoechstes - i;
 				maxElementeBei = i;
 			}
-			/** Vergleiche zur Determination der Kennzahl: Hoechste Relative Groesse */
+			/**
+			 * Vergleiche zur Determination der Kennzahl: Hoechste Relative
+			 * Groesse
+			 */
 			if (aktuellRelGroesse > maxRelGroesse) {
 				maxRelGroesse = aktuellRelGroesse;
 				maxRelGroesseBei = i;
 			}
+
 		}
 
-		/** Ausgabebereich */
-		System.out.println("Maximale Laenge: " + (int) maxLaenge + " bei n = " + (int) maxLaengeBei);
-		System.out.println(
-				"Maximales Element: " + (int) (maxElemente + maxElementeBei) + " bei n = " + (int) maxElementeBei);
-		System.out.println(
-				"Maximale relative Groesse: " + dezFormat.format(maxRelGroesse) + " bei n = " + (int) maxRelGroesseBei);
+		ausgabe(maxLaenge, maxLaengeBei, maxElemente, maxElementeBei, maxRelGroesse, maxRelGroesseBei);
 	}
 
+	public static void ausgabe(double l, double lBei, double e, double eBei, double r, double rBei) {
+		DecimalFormat dezFormat = new DecimalFormat("#0.00");
+		System.out.println("Maximale Laenge: " + (int) l + " bei n = " + (int) lBei);
+		System.out.println("Maximales Element: " + (int) (e + eBei) + " bei n = " + (int) eBei);
+		System.out.println("Maximale relative Groesse: " + dezFormat.format(r) + " bei n = " + (int) rBei);
+	}
 }
