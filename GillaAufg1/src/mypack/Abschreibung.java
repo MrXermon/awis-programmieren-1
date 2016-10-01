@@ -11,56 +11,66 @@ import java.text.*;
 public class Abschreibung {
 
 	public static void main(String[] args) {
-		final double anschkosten = 21000;
-		final double prozentsatz = 20;
-		final int nutzdauer = 7;
+		final double ANSCHKOSTEN = 21000;
+		final double PROZENTSATZ = 20;
+		final int NUTZDAUER = 7;
 
-		double restBuchWert = anschkosten; // Aktueller Restbuchwert
+		double restBuchWert = ANSCHKOSTEN; // Aktueller Restbuchwert
 		double abschreibung = 0; // Aktuelle Abschreibung
 		double wechselJahr = 0; // Jahr ab dem gewechselt wird
 
-		/** Start Lineare Abschreibung */
+		DecimalFormat ausgFormat = new DecimalFormat("#,##0.00");
+
+		/**
+		 * Lineare Abschreibung
+		 */
 		System.out.println("Lineare Abschreibung:");
-		zeileTitel();
-		for (int j = 0; j < nutzdauer + 1; j++) {
-			abschreibung = anschkosten / nutzdauer;
-			restBuchWert = anschkosten - (j * anschkosten / nutzdauer);
-			zeileAusgeben(j, abschreibung, restBuchWert, "");
+		System.out.println("Jahr\tAbschreibung\tRestbuchwert");
+		for (int j = 0; j < NUTZDAUER + 1; j++) {
+			abschreibung = ANSCHKOSTEN / NUTZDAUER;
+			restBuchWert = ANSCHKOSTEN - (j * ANSCHKOSTEN / NUTZDAUER);
+			System.out.println(" " + j + "\t " + String.format("%1$9s", ausgFormat.format(abschreibung)) + " EUR\t"
+					+ String.format("%1$9s", ausgFormat.format(restBuchWert)) + " EUR ");
 		}
 
-		/** Zuruecksetzen fuer Geometrisch-degressive Abschreibung */
-		restBuchWert = anschkosten;
+		/**
+		 * Geometrisch-degressive Abschreibung
+		 */
+		restBuchWert = ANSCHKOSTEN;
 		abschreibung = 0;
 		System.out.println("Geometrisch-degressive Abschreibung:");
-		zeileTitel();
-		for (int j = 0; j < nutzdauer + 1; j++) {
+		System.out.println("Jahr\tAbschreibung\tRestbuchwert");
+		for (int j = 0; j < NUTZDAUER + 1; j++) {
 			if (j == 0) {
 				abschreibung = 0;
 			} else {
-				abschreibung = restBuchWert * (prozentsatz / 100);
+				abschreibung = restBuchWert * (PROZENTSATZ / 100);
 				restBuchWert -= abschreibung;
 			}
-			zeileAusgeben(j, abschreibung, restBuchWert, "");
+			System.out.println(" " + j + "\t " + String.format("%1$9s", ausgFormat.format(abschreibung)) + " EUR\t"
+					+ String.format("%1$9s", ausgFormat.format(restBuchWert)) + " EUR ");
 		}
 
-		/** Zuruecksetzen auf Methodenwechsel Abschreibung */
-		restBuchWert = anschkosten;
+		/**
+		 * Methodenwechsel Abschreibung
+		 */
+		restBuchWert = ANSCHKOSTEN;
 		abschreibung = 0;
-		wechselJahr = nutzdauer - (100 / prozentsatz) + 1;
+		wechselJahr = NUTZDAUER - (100 / PROZENTSATZ) + 1;
 		System.out.println("Methodenwechsel Abschreibung:");
-		zeileTitel();
-		for (int j = 0; j < nutzdauer + 1; j++) {
+		System.out.println("Jahr\tAbschreibung\tRestbuchwert");
+		for (int j = 0; j < NUTZDAUER + 1; j++) {
 			if (j == 0) {
 				/** Ausnahmewert fuer NULL */
 				abschreibung = 0;
 			}
 			if (j > 0 && j <= wechselJahr) {
 				/** Geometrisch-degressive Abschreibung */
-				abschreibung = restBuchWert * prozentsatz / 100;
+				abschreibung = restBuchWert * PROZENTSATZ / 100;
 				restBuchWert -= abschreibung;
 			} else if (j == wechselJahr + 1) {
 				/** Berechnung der Abschreibung und Abzug im Wechseljahr */
-				abschreibung = restBuchWert / (nutzdauer - j + 1);
+				abschreibung = restBuchWert / (NUTZDAUER - j + 1);
 				restBuchWert -= abschreibung;
 			} else if (j > wechselJahr) {
 				/** Lineare Abschreibung */
@@ -69,35 +79,12 @@ public class Abschreibung {
 
 			/** Ausgabebereich */
 			if (j <= wechselJahr)
-				zeileAusgeben(j, abschreibung, restBuchWert, "");
+				System.out.println(" " + j + "\t " + String.format("%1$9s", ausgFormat.format(abschreibung)) + " EUR\t"
+						+ String.format("%1$9s", ausgFormat.format(restBuchWert)) + " EUR ");
 			else
-				zeileAusgeben(j, abschreibung, restBuchWert, "Wechsel linear");
+				System.out.println(" " + j + "\t " + String.format("%1$9s", ausgFormat.format(abschreibung)) + " EUR\t"
+						+ String.format("%1$9s", ausgFormat.format(restBuchWert)) + " EUR Wechsel linear");
 		}
-	}
-
-	/**
-	 * Zeile passend formatieren und ausgeben.
-	 * 
-	 * @param jhr
-	 *            Wert fuer die Spalte Jahr
-	 * @param abschr
-	 *            Wert fuer die Spalte Abschreibung
-	 * @param rbw
-	 *            Wert fuer die Spalte Restuchwert
-	 * @param txt
-	 *            Wert, der ggf. an die Ausgabe angehaengt wird.
-	 */
-	public static void zeileAusgeben(int jhr, double abschr, double rbw, String txt) {
-		DecimalFormat ausgFormat = new DecimalFormat("#,##0.00");
-		System.out.println(" " + jhr + "\t " + String.format("%1$9s", ausgFormat.format(abschr)) + " EUR\t"
-				+ String.format("%1$9s", ausgFormat.format(rbw)) + " EUR " + txt);
-	}
-
-	/**
-	 * Funktion zur Ausgabe der Ueberschriften.
-	 */
-	public static void zeileTitel() {
-		System.out.println("Jahr\tAbschreibung\tRestbuchwert");
 	}
 
 }
