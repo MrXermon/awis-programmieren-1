@@ -11,7 +11,7 @@ package mypack;
 public class Collatz {
 
 	public static void main(String[] args) {
-		final double ENDE = 50000;
+		final double ENDE = 5000;
 
 		/**
 		 * Variablen zur Berechnung der maximalen Kettenlaenge
@@ -91,11 +91,12 @@ public class Collatz {
 				vermutungAnzahl = sucheAnzahl;
 				vermutung = suche;
 			}
+			
 		}
 
 		ausgabe(maxLaenge, maxLaengeBei, maxElemente, maxElementeBei, maxRelGroesse, maxRelGroesseBei, vermutung,
 				vermutungAnzahl);
-
+		
 	}
 
 	/**
