@@ -25,11 +25,15 @@ public class Abschreibung {
 		 * Lineare Abschreibung
 		 */
 		System.out.println("Lineare Abschreibung:");
-		System.out.println("Jahr\tAbschreibung\tRestbuchwert");
+		System.out.println("Jahr\t Abschreibung\t Restbuchwert");
 		for (int j = 0; j < NUTZDAUER + 1; j++) {
 			abschreibung = ANSCHKOSTEN / NUTZDAUER;
 			restBuchWert = ANSCHKOSTEN - (j * ANSCHKOSTEN / NUTZDAUER);
-			System.out.println(" " + j + "\t " + String.format("%1$9s", ausgFormat.format(abschreibung)) + " EUR\t"
+			if (j == 0) {
+				/** Ausnahmewert fuer NULL */
+				abschreibung = 0;
+			}
+			System.out.println(" " + j + "\t " + String.format("%1$9s", ausgFormat.format(abschreibung)) + " EUR\t "
 					+ String.format("%1$9s", ausgFormat.format(restBuchWert)) + " EUR ");
 		}
 
@@ -39,15 +43,17 @@ public class Abschreibung {
 		restBuchWert = ANSCHKOSTEN;
 		abschreibung = 0;
 		System.out.println("Geometrisch-degressive Abschreibung:");
-		System.out.println("Jahr\tAbschreibung\tRestbuchwert");
+		System.out.println("Jahr\t Abschreibung\t Restbuchwert");
 		for (int j = 0; j < NUTZDAUER + 1; j++) {
 			if (j == 0) {
+				/** Ausnahmewert fuer NULL */
 				abschreibung = 0;
 			} else {
+				/** Sonst berechnung der Abschreibung */
 				abschreibung = restBuchWert * (PROZENTSATZ / 100);
 				restBuchWert -= abschreibung;
 			}
-			System.out.println(" " + j + "\t " + String.format("%1$9s", ausgFormat.format(abschreibung)) + " EUR\t"
+			System.out.println(" " + j + "\t " + String.format("%1$9s", ausgFormat.format(abschreibung)) + " EUR\t "
 					+ String.format("%1$9s", ausgFormat.format(restBuchWert)) + " EUR ");
 		}
 
@@ -58,7 +64,7 @@ public class Abschreibung {
 		abschreibung = 0;
 		wechselJahr = NUTZDAUER - (100 / PROZENTSATZ) + 1;
 		System.out.println("Methodenwechsel Abschreibung:");
-		System.out.println("Jahr\tAbschreibung\tRestbuchwert");
+		System.out.println("Jahr\t Abschreibung\t Restbuchwert");
 		for (int j = 0; j < NUTZDAUER + 1; j++) {
 			if (j == 0) {
 				/** Ausnahmewert fuer NULL */
@@ -79,10 +85,10 @@ public class Abschreibung {
 
 			/** Ausgabebereich */
 			if (j <= wechselJahr)
-				System.out.println(" " + j + "\t " + String.format("%1$9s", ausgFormat.format(abschreibung)) + " EUR\t"
+				System.out.println(" " + j + "\t " + String.format("%1$9s", ausgFormat.format(abschreibung)) + " EUR\t "
 						+ String.format("%1$9s", ausgFormat.format(restBuchWert)) + " EUR ");
 			else
-				System.out.println(" " + j + "\t " + String.format("%1$9s", ausgFormat.format(abschreibung)) + " EUR\t"
+				System.out.println(" " + j + "\t " + String.format("%1$9s", ausgFormat.format(abschreibung)) + " EUR\t "
 						+ String.format("%1$9s", ausgFormat.format(restBuchWert)) + " EUR Wechsel linear");
 		}
 	}

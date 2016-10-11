@@ -9,7 +9,7 @@ package mypack;
 public class Collatz {
 
 	public static void main(String[] args) {
-		final double ENDE = 50000;
+		final double ENDE = 10;
 
 		/**
 		 * Variablen fuer Performance
