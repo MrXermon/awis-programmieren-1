@@ -2,8 +2,6 @@
  * Jan Gilla
  * 17.09.2016
  * Berechnung der Collatz Zahlen im definierten Bereich und verschiedener Kenngroessen.
- * 
- * Hinweis: Die Berechnung der letzten Kennzahl dauert SEHR lange.
  */
 
 package mypack;
@@ -11,8 +9,12 @@ package mypack;
 public class Collatz {
 
 	public static void main(String[] args) {
-		final double ENDE = 5000;
+		final double ENDE = 50000;
 
+		/**
+		 * Variablen fuer Performance
+		 */
+		double laenge, element, groesse;
 		/**
 		 * Variablen zur Berechnung der maximalen Kettenlaenge
 		 */
@@ -50,36 +52,49 @@ public class Collatz {
 		for (int i = 1; i <= ENDE; i++) {
 
 			/**
+			 * Berechnung der Kennzahlen zur Kettenlaenge i
+			 */
+			laenge = folge(i, 1);
+			element = folge(i, 2);
+			groesse = folge(i, 3);
+
+			/**
 			 * Kennzahl: Laengste Folge
 			 */
-			if (folge(i, 1) > maxLaenge) {
-				maxLaenge = folge(i, 1);
+			if (laenge > maxLaenge) {
+				maxLaenge = laenge;
 				maxLaengeBei = i;
 			}
 
 			/**
 			 * Kennzahl: Hoechstes Element der Folge
 			 */
-			if ((folge(i, 2) - i) > maxElemente) {
-				maxElemente = folge(i, 2) - i;
+			if ((element - i) > maxElemente) {
+				maxElemente = element - i;
 				maxElementeBei = i;
 			}
 
 			/**
 			 * Kennzahl: Hoechste Relative Groesse
 			 */
-			if (folge(i, 3) > maxRelGroesse) {
-				maxRelGroesse = folge(i, 3);
+			if (groesse > maxRelGroesse) {
+				maxRelGroesse = groesse;
 				maxRelGroesseBei = i;
 			}
 
 		}
 
+		System.out.println("Maximale Laenge: " + (int) maxLaenge + " bei n = " + (int) maxLaengeBei);
+		System.out.println(
+				"Maximales Element: " + (int) (maxElemente + maxElementeBei) + " bei n = " + (int) maxElementeBei);
+		System.out.println("Maximale relative Groesse: " + Math.round(maxRelGroesse * 100) / 100d + " bei n = "
+				+ (int) maxRelGroesseBei);
+
 		/**
 		 * Kennzahl: Haufigste Kettenlaenge
 		 */
-		for (int j = 1; j <= ENDE; j++) {
-			suche = folge(j, 1);
+		for (int j = 1; j <= (int) maxLaenge; j++) {
+			suche = j;
 			sucheAnzahl = 0;
 
 			for (int i = 1; i <= ENDE; i++) {
@@ -91,12 +106,12 @@ public class Collatz {
 				vermutungAnzahl = sucheAnzahl;
 				vermutung = suche;
 			}
-			
+
 		}
 
-		ausgabe(maxLaenge, maxLaengeBei, maxElemente, maxElementeBei, maxRelGroesse, maxRelGroesseBei, vermutung,
-				vermutungAnzahl);
-		
+		System.out.println("Am haeufigsten kommt die Kettenlaenge " + (int) vermutung + " vor, und zwar "
+				+ (int) vermutungAnzahl + " mal");
+
 	}
 
 	/**
@@ -171,32 +186,4 @@ public class Collatz {
 		return 0;
 	}
 
-	/**
-	 * Funktion zur Ausgabe der Ergebnisse
-	 * 
-	 * @param l
-	 *            Wert fuer die max. Laenge
-	 * @param lBei
-	 *            Startwert fuer die max. Laenge
-	 * @param e
-	 *            Wert fuer das max. Element
-	 * @param eBei
-	 *            Startwert fuer das max. Element
-	 * @param r
-	 *            Wert fuer die rel. Groesse
-	 * @param rBei
-	 *            Startwert fuer die rel. Groesse
-	 * @param k
-	 *            Wert fuer die haeufigste Kenntenlaenge
-	 * @param kAnt
-	 *            Hauefigkeit der Kettenlaenge
-	 */
-	public static void ausgabe(double l, double lBei, double e, double eBei, double r, double rBei, double k,
-			double kAnz) {
-		System.out.println("Maximale Laenge: " + (int) l + " bei n = " + (int) lBei);
-		System.out.println("Maximales Element: " + (int) (e + eBei) + " bei n = " + (int) eBei);
-		System.out.println("Maximale relative Groesse: " + Math.round(r * 100) / 100d + " bei n = " + (int) rBei);
-		System.out
-				.println("Am haeufigsten kommt die Kettenlaenge " + (int) k + " vor, und zwar " + (int) kAnz + " mal");
-	}
 }
