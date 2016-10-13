@@ -1,6 +1,8 @@
 /**
  * Jan Gilla
  * 17.09.2016
+ * V1.0
+ * 
  * Berechnug und Ausgabe einer linearen, Geometrisch-degressiven und Methodenwechsel Abschreibung
  */
 
@@ -12,6 +14,7 @@ public class Abschreibung {
 
 	public static void main(String[] args) {
 		final double ANSCHKOSTEN = 21000;
+		/** Bitte als Ganzzahl nicht als Kommawert, 20% -> 20 */
 		final double PROZENTSATZ = 20;
 		final int NUTZDAUER = 7;
 
@@ -63,6 +66,7 @@ public class Abschreibung {
 		restBuchWert = ANSCHKOSTEN;
 		abschreibung = 0;
 		wechselJahr = NUTZDAUER - (100 / PROZENTSATZ) + 1;
+		System.out.println(wechselJahr);
 		System.out.println("Methodenwechsel Abschreibung:");
 		System.out.println("Jahr\t Abschreibung\t Restbuchwert");
 		for (int j = 0; j < NUTZDAUER + 1; j++) {
@@ -84,12 +88,13 @@ public class Abschreibung {
 			}
 
 			/** Ausgabebereich */
-			if (j <= wechselJahr)
+			if (j <= wechselJahr) {
 				System.out.println(" " + j + "\t " + String.format("%1$9s", ausgFormat.format(abschreibung)) + " EUR\t "
 						+ String.format("%1$9s", ausgFormat.format(restBuchWert)) + " EUR ");
-			else
+			} else {
 				System.out.println(" " + j + "\t " + String.format("%1$9s", ausgFormat.format(abschreibung)) + " EUR\t "
 						+ String.format("%1$9s", ausgFormat.format(restBuchWert)) + " EUR Wechsel linear");
+			}
 		}
 	}
 

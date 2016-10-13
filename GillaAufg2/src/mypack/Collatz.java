@@ -1,6 +1,8 @@
 /**
  * Jan Gilla
  * 17.09.2016
+ * V1.0
+ * 
  * Berechnung der Collatz Zahlen im definierten Bereich und verschiedener Kenngroessen.
  */
 
@@ -9,7 +11,7 @@ package mypack;
 public class Collatz {
 
 	public static void main(String[] args) {
-		final double ENDE = 10;
+		final double ENDE = 50000;
 
 		/**
 		 * Variablen fuer Performance
@@ -106,7 +108,6 @@ public class Collatz {
 				vermutungAnzahl = sucheAnzahl;
 				vermutung = suche;
 			}
-
 		}
 
 		System.out.println("Am haeufigsten kommt die Kettenlaenge " + (int) vermutung + " vor, und zwar "
@@ -118,7 +119,8 @@ public class Collatz {
 	 * Berechnung der naechsten Zahl der Collatzfolge
 	 * 
 	 * @param n
-	 * @return
+	 *            Aktuelles Element zur Berechung des naechsten Folgenwerts
+	 * @return Berechneter naechster Wert der Folge
 	 */
 	public static double schritt(double n) {
 		if (n != 1.0) {
@@ -139,7 +141,7 @@ public class Collatz {
 	 * @param start
 	 * @param rueckgabe
 	 *            0: Ausgabe, 1: Kettenlaenge, 2: Hoechstes, 3: Rel. Groesse
-	 * @return
+	 * @return In Abhaengigkeit von @param rueckgabe
 	 */
 	public static double folge(double start, int rueckgabe) {
 		double n = start;
