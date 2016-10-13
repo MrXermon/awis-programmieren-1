@@ -14,7 +14,7 @@ public class Collatz {
 		final double ENDE = 50000;
 
 		/**
-		 * Variablen fuer Performance
+		 * Variablen zur Vermeidung von doppelten Aufrufen
 		 */
 		double laenge, element, groesse;
 		/**
