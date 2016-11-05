@@ -64,6 +64,16 @@ public class Tamagotchi {
 	}
 
 	/**
+	 * Methode zum Erhoehen des Attributs Name
+	 * 
+	 * @param n
+	 *            zu setzender Name
+	 */
+	public void setName(String n) {
+		this.name = n;
+	}
+
+	/**
 	 * Rueckgabe des aktuellen Namen
 	 * 
 	 * @return Wert aus dem Attribut
@@ -213,14 +223,15 @@ public class Tamagotchi {
 		/** Anzahl der zu spielenden Runden **/
 		final int MAX_RUNDENZAHL = 3;
 
-		/** Fuer die Familie genoetigte Variablen **/
+		/** Fuer die Familie benoetigte Variablen **/
 		Tamagotchi[] tamagotchiListe = new Tamagotchi[MAX_TAMAGOTCHI];
 		int lebendigAnzahl = 0;
 		int i = 1;
 
-		Tamagotchi T = new Tamagotchi("Name1");
+		Tamagotchi T = new Tamagotchi("Animal1");
 		T.spiel(MAX_RUNDENZAHL);
 		if (T.getLebt()) {
+			T.setName("Name1");
 			tamagotchiListe[0] = T;
 			lebendigAnzahl++;
 		}
@@ -231,13 +242,8 @@ public class Tamagotchi {
 		while (lebendigAnzahl > 0 && i == lebendigAnzahl && i < MAX_TAMAGOTCHI) {
 			tamagotchiListe[i] = new Tamagotchi("Name" + (i + 1));
 			tamagotchiListe[i].spiel(MAX_RUNDENZAHL);
-			if (tamagotchiListe[i].getLebt()) {
-				/** Sofern das Tamagotchi ueberlebt hat wird weiter gemacht **/
+			if (tamagotchiListe[i].getLebt())
 				lebendigAnzahl++;
-			} else {
-				/** ansonsten wird das Tamagotchi begraben... **/
-				tamagotchiListe[i] = null;
-			}
 			i++;
 		}
 
