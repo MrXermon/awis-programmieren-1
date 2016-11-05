@@ -8,6 +8,9 @@ public class Container {
 	private int max;
 	private int count;
 
+	/**
+	 * Standard-Konstruktor
+	 */
 	public Container() {
 		this.maxSumme = 7;
 		this.summe = 0;
@@ -15,26 +18,50 @@ public class Container {
 		this.count = 0;
 		this.max = 10;
 	}
-	
-	public int getSumme(){
+
+	/**
+	 * (Additions-)Summe der Elemente
+	 * 
+	 * @return Summe
+	 */
+	public int getSumme() {
 		return this.summe;
 	}
-	
-	public int getCount(){
+
+	/**
+	 * Anzahl der Elemente in der Liste
+	 * 
+	 * @return Anzahl
+	 */
+	public int getCount() {
 		return this.count;
 	}
-	
-	public void showElements(){
-		for(int i = 0; i < this.count; i++)
+
+	/**
+	 * Ausgabe der Elemente mit entsprechender Formatierung in der Konsole
+	 */
+	public void showElements() {
+		for (int i = 0; i < this.count; i++)
 			System.out.print(this.list[i] + " ");
 	}
 
+	/**
+	 * Funktion zum hinzufuegen eines Elements zu der Liste
+	 * 
+	 * @param i
+	 *            Hinzuzufuegendes Element
+	 * @return Hinzufuegen geklappt oder nicht
+	 */
 	public boolean add(int i) {
 		if ((this.summe + i) <= this.maxSumme && this.count < this.max) {
 			this.summe += i;
 			this.list[this.count++] = i;
 			return true;
 		} else {
+			/**
+			 * Nicht ausreichend Platz im Container oder maximales Gewicht
+			 * erreicht
+			 **/
 			return false;
 		}
 	}
