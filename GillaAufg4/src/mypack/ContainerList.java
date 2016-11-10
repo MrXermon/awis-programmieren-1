@@ -12,7 +12,24 @@ public class ContainerList {
 	public ContainerList() {
 		this.max = 3;
 		this.count = 0;
-		this.list = new Container[3];
+		this.list = new Container[this.max];
+		for (int i = 0; i < this.max; i++) {
+			this.list[i] = new Container();
+			this.count++;
+		}
+	}
+
+	/**
+	 * Konstruktor zum Anlegen von Container Listen mit einer vorgegebenen
+	 * Anzahl an Containern
+	 * 
+	 * @param max
+	 *            Anzahl der anzulegenden Container
+	 */
+	public ContainerList(int max) {
+		this.max = max;
+		this.count = 0;
+		this.list = new Container[this.max];
 		for (int i = 0; i < this.max; i++) {
 			this.list[i] = new Container();
 			this.count++;
@@ -31,6 +48,15 @@ public class ContainerList {
 			return this.list[i];
 		else
 			return new Container();
+	}
+
+	/**
+	 * Methode zur Rueckgabe der Anzahl der Container
+	 * 
+	 * @return Anzahl
+	 */
+	public int getCount() {
+		return this.count;
 	}
 
 	/**
@@ -97,17 +123,17 @@ public class ContainerList {
 		Container c;
 
 		l.reverse();
-		/** Solange noch Elemente in der LoadList vorhanden sind... **/
+		/* Solange noch Elemente in der LoadList vorhanden sind... */
 		do {
 			aktuell = l.getElement(l.getCount() - 1);
-			/** LoadListen Elemente sind bei Nichtverwendung -1 **/
+			/* LoadListen Elemente sind bei Nichtverwendung -1 */
 			if (aktuell > -1) {
 				container = 0;
+				/*
+				 * Versuch den Wert in den erstbesten Container hinzuzufuegen,
+				 * sonst den naechsten Container verwenden
+				 */
 				do {
-					/**
-					 * Versuch den Wert in den erstbesten Container
-					 * hinzuzufuegen, sonst den naechsten Container verwenden
-					 **/
 					c = this.getContainer(container);
 					if (c.add(aktuell)) {
 						aktuell = -1;
@@ -122,17 +148,19 @@ public class ContainerList {
 
 	public static void main(String[] args) {
 
-		/** Initialisierung der zu verwendenden Daten **/
+		/* Initialisierung der zu verwendenden Daten */
+		// int[] ladeListe = new int[] { 3, 5, 2, 4, 7, 6, 4, 3, 4, 2, 3, 4, 5,
+		// 6, 3, 4, 4, 3, 2 };
 		int[] ladeListe = new int[] { 3, 5, 2, 4 };
 		ContainerList cl = null;
 		LoadList loadList = null;
 
-		/** Initialisierung und Aufruf First Fit Algorithmus **/
+		/* Initialisierung und Aufruf First Fit Algorithmus */
 		loadList = new LoadList(ladeListe);
 		cl = new ContainerList();
 		cl.FF(loadList);
 
-		/** Initialisierung und Aufruf First Fit Decreasing Algorithmus **/
+		/* Initialisierung und Aufruf First Fit Decreasing Algorithmus */
 		loadList = new LoadList(ladeListe);
 		cl = new ContainerList();
 		cl.FFD(loadList);

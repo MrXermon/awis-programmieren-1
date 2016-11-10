@@ -58,10 +58,10 @@ public class Container {
 			this.list[this.count++] = i;
 			return true;
 		} else {
-			/**
+			/*
 			 * Nicht ausreichend Platz im Container oder maximales Gewicht
 			 * erreicht
-			 **/
+			 */
 			return false;
 		}
 	}
