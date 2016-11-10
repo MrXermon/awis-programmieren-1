@@ -169,11 +169,11 @@ public class Tamagotchi {
 		/* Ausgabe der Ergebniszeile */
 		if (!this.getLebt()) {
 			System.out.print("Verloren ...");
-			if(this.getSatt() <= 0 && this.getGlueck() >= 1){
+			if (this.getSatt() <= 0 && this.getGlueck() >= 1) {
 				System.out.print("verhungert & verhaetschelt");
-			}else if(this.getSatt() >= 1 && this.getGlueck() <= 0){
+			} else if (this.getSatt() >= 1 && this.getGlueck() <= 0) {
 				System.out.print("geplatzt & verkuemmert");
-			}else if (this.getSatt() <= 0) {
+			} else if (this.getSatt() <= 0) {
 				System.out.print("verhungert");
 			} else if (this.getSatt() >= 1) {
 				System.out.print("geplatzt");
