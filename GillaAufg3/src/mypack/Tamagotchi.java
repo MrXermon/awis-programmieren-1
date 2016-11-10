@@ -126,12 +126,13 @@ public class Tamagotchi {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 
-		/** Abfangen von nicht validen Eingaben **/
+		/* Abfangen von nicht validen Eingaben */
 		do {
 			System.out.print("        Eingabe (f = fuettern, u = unterhalten): ");
 			tun = input.nextLine();
 		} while (!tun.equals("f") && !tun.contentEquals("u"));
 
+		/* Unterscheidung der verschiedenen Eingaben */
 		switch (tun) {
 		case "f":
 			this.setSatt();
@@ -155,7 +156,7 @@ public class Tamagotchi {
 	public void spiel(int anzRunden) {
 		int i = 1;
 
-		/** Durchspielen der einzelen Runden **/
+		/* Durchspielen der einzelen Runden */
 		do {
 			System.out.print("Runde " + i + " ");
 			this.infoAusgabe();
@@ -165,17 +166,21 @@ public class Tamagotchi {
 
 		System.out.print("\n");
 
-		/** Ausgabe der Ergebniszeile **/
+		/* Ausgabe der Ergebniszeile */
 		if (!this.getLebt()) {
 			System.out.print("Verloren ...");
-			if (this.getSatt() <= 0) {
+			if(this.getSatt() <= 0 && this.getGlueck() >= 1){
+				System.out.print("verhungert & verhaetschelt");
+			}else if(this.getSatt() >= 1 && this.getGlueck() <= 0){
+				System.out.print("geplatzt & verkuemmert");
+			}else if (this.getSatt() <= 0) {
 				System.out.print("verhungert");
 			} else if (this.getSatt() >= 1) {
 				System.out.print("geplatzt");
 			} else if (this.getGlueck() <= 0) {
 				System.out.print("verkuemmert");
 			} else if (this.getGlueck() >= 1) {
-				System.out.print("verhaaetschelt");
+				System.out.print("verhaetschelt");
 			}
 		} else {
 			System.out.print("Gewonnen!");
@@ -218,12 +223,12 @@ public class Tamagotchi {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		/** Anzahl der Tamagotchis **/
+		/* Anzahl der Tamagotchis */
 		final int MAX_TAMAGOTCHI = 3;
-		/** Anzahl der zu spielenden Runden **/
+		/* Anzahl der zu spielenden Runden */
 		final int MAX_RUNDENZAHL = 3;
 
-		/** Fuer die Familie benoetigte Variablen **/
+		/* Fuer die Familie benoetigte Variablen */
 		Tamagotchi[] tamagotchiListe = new Tamagotchi[MAX_TAMAGOTCHI];
 		int lebendigAnzahl = 0;
 		int i = 1;
@@ -236,9 +241,10 @@ public class Tamagotchi {
 			lebendigAnzahl++;
 		}
 
-		/**
-		 * Schleife zum Erzeugen und Durchspielen der einzelnen Tamagotchis.
-		 **/
+		/*
+		 * Schleife zum Erzeugen und Durchspielen der einzelnen Tamagotchis,
+		 * sofern sie ueberleben
+		 */
 		while (lebendigAnzahl > 0 && i == lebendigAnzahl && i < MAX_TAMAGOTCHI) {
 			tamagotchiListe[i] = new Tamagotchi("Name" + (i + 1));
 			tamagotchiListe[i].spiel(MAX_RUNDENZAHL);
