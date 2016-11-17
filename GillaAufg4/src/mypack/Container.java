@@ -40,7 +40,7 @@ public class Container {
 	/**
 	 * Ausgabe der Elemente mit entsprechender Formatierung in der Konsole
 	 */
-	public void showElements() {
+	public void elementeAusgeben() {
 		for (int i = 0; i < this.count; i++)
 			System.out.print(this.list[i] + " ");
 	}

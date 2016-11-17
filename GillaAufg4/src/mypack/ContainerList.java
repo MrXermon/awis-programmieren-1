@@ -62,14 +62,14 @@ public class ContainerList {
 	/**
 	 * Ausgabe einzelnen Container aus der Liste
 	 */
-	public void showContainers() {
+	public void containerAusgeben() {
 		Container c;
 		for (int i = 0; i < this.count; i++) {
 			c = this.getContainer(i);
 			System.out.println("Container Nr.:\t" + i);
 			System.out.println("Anzahl Stuecke:\t" + c.getCount());
 			System.out.print("Inhalt:\t");
-			c.showElements();
+			c.elementeAusgeben();
 			System.out.println();
 			System.out.println();
 		}
@@ -83,12 +83,12 @@ public class ContainerList {
 	 */
 	public void FF(LoadList l) {
 		System.out.print("Ladeliste: ");
-		l.showElements();
+		l.elementeAusgeben();
 		System.out.println("FIRST-FIT:");
 
 		this.aufContainerVerteilen(l);
 
-		this.showContainers();
+		this.containerAusgeben();
 	}
 
 	/**
@@ -99,15 +99,15 @@ public class ContainerList {
 	 */
 	public void FFD(LoadList l) {
 		System.out.print("Ladeliste: ");
-		l.showElements();
+		l.elementeAusgeben();
 		System.out.println("FIRST-FIT-DECREASING:");
 		System.out.print("Ladeliste sortiert: ");
 		l.sortDesc();
-		l.showElements();
+		l.elementeAusgeben();
 
 		this.aufContainerVerteilen(l);
 
-		this.showContainers();
+		this.containerAusgeben();
 	}
 
 	/**
@@ -120,6 +120,7 @@ public class ContainerList {
 	private void aufContainerVerteilen(LoadList l) {
 		int aktuell;
 		int container;
+		boolean abbruch = false;
 		Container c;
 
 		l.reverse();
@@ -139,18 +140,28 @@ public class ContainerList {
 						aktuell = -1;
 						l.delElement();
 					} else {
-						container++;
+						/*
+						 * Wenn der letzte Container getestet wurde -> Ueberlauf
+						 */
+						if (container == (this.getCount() - 1)) {
+							abbruch = true;
+						} else {
+							container++;
+						}
 					}
-				} while (aktuell != -1);
+				} while (aktuell != -1 && container < this.getCount() && abbruch == false);
 			}
-		} while (l.getCount() > 0);
+		} while (l.getCount() > 0 && abbruch == false);
+		if (abbruch) {
+			System.out.println(
+					"Hinweis: Es konnten nicht alle Elemte der "
+					+ "Ladelste verteilt werden.\nBisherige Verteilung:");
+		}
 	}
 
 	public static void main(String[] args) {
 
 		/* Initialisierung der zu verwendenden Daten */
-		// int[] ladeListe = new int[] { 3, 5, 2, 4, 7, 6, 4, 3, 4, 2, 3, 4, 5,
-		// 6, 3, 4, 4, 3, 2 };
 		int[] ladeListe = new int[] { 3, 5, 2, 4 };
 		ContainerList cl = null;
 		LoadList loadList = null;

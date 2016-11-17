@@ -89,7 +89,7 @@ public class LoadList {
 	/**
 	 * Ausgabe der Elemente mit entsprechender Formatierung in der Konsole
 	 */
-	public void showElements() {
+	public void elementeAusgeben() {
 		System.out.print("[");
 		for (int i = 0; i < this.count; i++) {
 			System.out.print(this.list[i]);
