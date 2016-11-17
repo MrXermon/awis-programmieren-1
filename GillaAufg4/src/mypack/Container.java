@@ -1,3 +1,11 @@
+/**
+ * Jan Gilla
+ * 17.11.2016
+ * V1.0
+ * 
+ * Abbildung eines einzelnen Containers
+ */
+
 package mypack;
 
 public class Container {

@@ -1,3 +1,11 @@
+/**
+ * Jan Gilla
+ * 17.11.2016
+ * V1.0
+ * 
+ * Abbildung der Liste zur Verwaltung der einzelnen Container
+ */
+
 package mypack;
 
 public class ContainerList {
