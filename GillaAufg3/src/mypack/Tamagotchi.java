@@ -156,7 +156,7 @@ public class Tamagotchi {
 	public void spiel(int anzRunden) {
 		int i = 1;
 
-		/* Durchspielen der einzelen Runden */
+		/* Durchspielen der einzelen Runden sofern das Tamagotchi ueberlebt */
 		do {
 			System.out.print("Runde " + i + " ");
 			this.infoAusgabe();
@@ -191,7 +191,7 @@ public class Tamagotchi {
 	}
 
 	/**
-	 * Angepasste Aufgabe der Statusinformationen
+	 * Ausgabe der Statusinformationen mit Formatierung
 	 */
 	public void infoAusgabe() {
 		DecimalFormat ausgFormat = new DecimalFormat("#,##0.00");
