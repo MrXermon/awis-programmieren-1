@@ -235,6 +235,7 @@ public class Tamagotchi {
 
 		Tamagotchi T = new Tamagotchi("Animal1");
 		T.spiel(MAX_RUNDENZAHL);
+		/* Wenn das Tamagotchi lebt wird es der Liste hinzugeguegt */
 		if (T.getLebt()) {
 			T.setName("Name1");
 			tamagotchiListe[0] = T;
@@ -243,7 +244,8 @@ public class Tamagotchi {
 
 		/*
 		 * Schleife zum Erzeugen und Durchspielen der einzelnen Tamagotchis,
-		 * sofern sie ueberleben
+		 * sofern das 1. ueberlebt hat, die weiteren ebenfalls ueberleben und
+		 * die maximale Anzahl noch nicht erreicht ist
 		 */
 		while (lebendigAnzahl > 0 && i == lebendigAnzahl && i < MAX_TAMAGOTCHI) {
 			tamagotchiListe[i] = new Tamagotchi("Name" + (i + 1));
