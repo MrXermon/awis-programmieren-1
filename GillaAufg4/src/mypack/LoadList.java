@@ -76,7 +76,8 @@ public class LoadList {
 	 * Element aus der Liste auslesen
 	 * 
 	 * @param i
-	 * @return
+	 *            Element in der Liste
+	 * @return Wert des Elements
 	 */
 	public int getElement(int i) {
 		if (i < this.count)
