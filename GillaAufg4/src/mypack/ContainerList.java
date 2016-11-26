@@ -11,7 +11,7 @@ package mypack;
 public class ContainerList {
 
 	/** Liste der Container **/
-	private Container[] list;
+	private Container[] liste;
 	/** Maximaler Platz in der Liste **/
 	private int max;
 	/** Aktuell verwendete Container **/
@@ -23,9 +23,9 @@ public class ContainerList {
 	public ContainerList() {
 		this.max = 3;
 		this.anzahl = 0;
-		this.list = new Container[this.max];
+		this.liste = new Container[this.max];
 		for (int i = 0; i < this.max; i++) {
-			this.list[i] = new Container();
+			this.liste[i] = new Container();
 			this.anzahl++;
 		}
 	}
@@ -40,9 +40,9 @@ public class ContainerList {
 	public ContainerList(int max) {
 		this.max = max;
 		this.anzahl = 0;
-		this.list = new Container[this.max];
+		this.liste = new Container[this.max];
 		for (int i = 0; i < this.max; i++) {
-			this.list[i] = new Container();
+			this.liste[i] = new Container();
 			this.anzahl++;
 		}
 	}
@@ -56,7 +56,7 @@ public class ContainerList {
 	 */
 	public Container getContainer(int i) {
 		if (i < this.getAnzahl() && i > -1)
-			return this.list[i];
+			return this.liste[i];
 		else
 			return new Container();
 	}

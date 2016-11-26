@@ -17,7 +17,7 @@ public class LoadList {
 	/** Aktuelle Anzahl der Elemente in der Ladeliste **/
 	private int anzahl;
 	/** Liste mit Elementen **/
-	private int[] list;
+	private int[] liste;
 
 	/**
 	 * Standard-Konstruktor
@@ -25,7 +25,7 @@ public class LoadList {
 	public LoadList() {
 		this.max = 10;
 		this.anzahl = 0;
-		this.list = new int[10];
+		this.liste = new int[10];
 	}
 
 	/**
@@ -37,10 +37,10 @@ public class LoadList {
 	public LoadList(int[] l) {
 		this.max = l.length;
 		this.anzahl = l.length;
-		this.list = new int[l.length];
+		this.liste = new int[l.length];
 
 		for (int i = 0; i < l.length; i++)
-			this.list[i] = l[i];
+			this.liste[i] = l[i];
 	}
 
 	/**
@@ -52,9 +52,9 @@ public class LoadList {
 	public LoadList(int max) {
 		this.max = max;
 		this.anzahl = 0;
-		this.list = new int[max];
+		this.liste = new int[max];
 		for (int i = 0; i < this.anzahl; i++)
-			this.list[i] = -1;
+			this.liste[i] = -1;
 	}
 
 	/**
@@ -65,14 +65,14 @@ public class LoadList {
 	 */
 	public void addElement(int i) {
 		if (this.anzahl < this.max)
-			this.list[this.anzahl++] = i;
+			this.liste[this.anzahl++] = i;
 	}
 
 	/**
 	 * Letztes Element aus der Liste entfernen
 	 */
 	public void delElement() {
-		this.list[--this.anzahl] = -1;
+		this.liste[--this.anzahl] = -1;
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class LoadList {
 	 */
 	public int getElement(int i) {
 		if (i < this.getAnzahl())
-			return this.list[i];
+			return this.liste[i];
 		else
 			return -1;
 	}
@@ -104,7 +104,7 @@ public class LoadList {
 	public void elementeAusgeben() {
 		System.out.print("[");
 		for (int i = 0; i < this.getAnzahl(); i++) {
-			System.out.print(this.list[i]);
+			System.out.print(this.liste[i]);
 			if ((this.getAnzahl() - 1) != i)
 				System.out.print(", ");
 		}
@@ -115,7 +115,7 @@ public class LoadList {
 	 * Elemente der Liste aufsteigend Sortieren
 	 */
 	public void sortAufsteigend() {
-		Arrays.sort(this.list);
+		Arrays.sort(this.liste);
 	}
 
 	/**
@@ -132,8 +132,8 @@ public class LoadList {
 	public void umkehren() {
 		int[] neueListe = new int[this.max];
 		for (int i = (this.max - 1); i >= 0; i--)
-			neueListe[i] = this.list[(this.anzahl - i - 1)];
+			neueListe[i] = this.liste[(this.anzahl - i - 1)];
 
-		this.list = neueListe;
+		this.liste = neueListe;
 	}
 }
