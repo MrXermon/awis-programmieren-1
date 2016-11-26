@@ -10,20 +10,23 @@ package mypack;
 
 public class ContainerList {
 
+	/** Liste der Container **/
 	private Container[] list;
+	/** Maximaler Platz in der Liste **/
 	private int max;
-	private int count;
+	/** Aktuell verwendete Container **/
+	private int anzahl;
 
 	/**
 	 * Standardkonstruktor
 	 */
 	public ContainerList() {
 		this.max = 3;
-		this.count = 0;
+		this.anzahl = 0;
 		this.list = new Container[this.max];
 		for (int i = 0; i < this.max; i++) {
 			this.list[i] = new Container();
-			this.count++;
+			this.anzahl++;
 		}
 	}
 
@@ -36,11 +39,11 @@ public class ContainerList {
 	 */
 	public ContainerList(int max) {
 		this.max = max;
-		this.count = 0;
+		this.anzahl = 0;
 		this.list = new Container[this.max];
 		for (int i = 0; i < this.max; i++) {
 			this.list[i] = new Container();
-			this.count++;
+			this.anzahl++;
 		}
 	}
 
@@ -52,7 +55,7 @@ public class ContainerList {
 	 * @return Container als Objekt
 	 */
 	public Container getContainer(int i) {
-		if (i < this.count && i > -1)
+		if (i < this.getAnzahl() && i > -1)
 			return this.list[i];
 		else
 			return new Container();
@@ -63,8 +66,8 @@ public class ContainerList {
 	 * 
 	 * @return Anzahl
 	 */
-	public int getCount() {
-		return this.count;
+	public int getAnzahl() {
+		return this.anzahl;
 	}
 
 	/**
@@ -72,10 +75,10 @@ public class ContainerList {
 	 */
 	public void containerAusgeben() {
 		Container c;
-		for (int i = 0; i < this.count; i++) {
+		for (int i = 0; i < this.getAnzahl(); i++) {
 			c = this.getContainer(i);
 			System.out.println("Container Nr.:\t" + i);
-			System.out.println("Anzahl Stuecke:\t" + c.getCount());
+			System.out.println("Anzahl Stuecke:\t" + c.getAnzahl());
 			System.out.print("Inhalt:\t");
 			c.elementeAusgeben();
 			System.out.println();
@@ -110,7 +113,7 @@ public class ContainerList {
 		l.elementeAusgeben();
 		System.out.println("FIRST-FIT-DECREASING:");
 		System.out.print("Ladeliste sortiert: ");
-		l.sortDesc();
+		l.sortAbsteigen();
 		l.elementeAusgeben();
 
 		this.aufContainerVerteilen(l);
@@ -131,10 +134,10 @@ public class ContainerList {
 		boolean abbruch = false;
 		Container c;
 
-		l.reverse();
+		l.umkehren();
 		/* Solange noch Elemente in der LoadList vorhanden sind... */
 		do {
-			aktuell = l.getElement(l.getCount() - 1);
+			aktuell = l.getElement(l.getAnzahl() - 1);
 			/* LoadListen Elemente sind bei Nichtverwendung -1 */
 			if (aktuell > -1) {
 				container = 0;
@@ -151,19 +154,18 @@ public class ContainerList {
 						/*
 						 * Wenn der letzte Container getestet wurde -> Ueberlauf
 						 */
-						if (container == (this.getCount() - 1)) {
+						if (container == (this.getAnzahl() - 1)) {
 							abbruch = true;
 						} else {
 							container++;
 						}
 					}
-				} while (aktuell != -1 && container < this.getCount() && abbruch == false);
+				} while (aktuell != -1 && container < this.getAnzahl() && abbruch == false);
 			}
-		} while (l.getCount() > 0 && abbruch == false);
+		} while (l.getAnzahl() > 0 && abbruch == false);
 		if (abbruch) {
 			System.out.println(
-					"Hinweis: Es konnten nicht alle Elemte der "
-					+ "Ladelste verteilt werden.\nBisherige Verteilung:");
+					"Hinweis: Es konnten nicht alle Elemte der " + "Ladelste verteilt werden.\nBisherige Verteilung:");
 		}
 	}
 

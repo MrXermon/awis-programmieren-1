@@ -12,8 +12,11 @@ import java.util.Arrays;
 
 public class LoadList {
 
+	/** Maximale Elemente in der Ladeliste **/
 	private int max;
-	private int count;
+	/** Aktuelle Anzahl der Elemente in der Ladeliste **/
+	private int anzahl;
+	/** Liste mit Elementen **/
 	private int[] list;
 
 	/**
@@ -21,7 +24,7 @@ public class LoadList {
 	 */
 	public LoadList() {
 		this.max = 10;
-		this.count = 0;
+		this.anzahl = 0;
 		this.list = new int[10];
 	}
 
@@ -33,7 +36,7 @@ public class LoadList {
 	 */
 	public LoadList(int[] l) {
 		this.max = l.length;
-		this.count = l.length;
+		this.anzahl = l.length;
 		this.list = new int[l.length];
 
 		for (int i = 0; i < l.length; i++)
@@ -48,9 +51,9 @@ public class LoadList {
 	 */
 	public LoadList(int max) {
 		this.max = max;
-		this.count = 0;
+		this.anzahl = 0;
 		this.list = new int[max];
-		for (int i = 0; i < this.count; i++)
+		for (int i = 0; i < this.anzahl; i++)
 			this.list[i] = -1;
 	}
 
@@ -61,15 +64,15 @@ public class LoadList {
 	 *            Element, dass hinzugefuegt werden soll.
 	 */
 	public void addElement(int i) {
-		if (this.count < this.max)
-			this.list[this.count++] = i;
+		if (this.anzahl < this.max)
+			this.list[this.anzahl++] = i;
 	}
 
 	/**
 	 * Letztes Element aus der Liste entfernen
 	 */
 	public void delElement() {
-		this.list[--this.count] = -1;
+		this.list[--this.anzahl] = -1;
 	}
 
 	/**
@@ -80,7 +83,7 @@ public class LoadList {
 	 * @return Wert des Elements
 	 */
 	public int getElement(int i) {
-		if (i < this.count)
+		if (i < this.getAnzahl())
 			return this.list[i];
 		else
 			return -1;
@@ -91,8 +94,8 @@ public class LoadList {
 	 * 
 	 * @return Anzahl der akuellen Element in der Liste
 	 */
-	public int getCount() {
-		return this.count;
+	public int getAnzahl() {
+		return this.anzahl;
 	}
 
 	/**
@@ -100,9 +103,9 @@ public class LoadList {
 	 */
 	public void elementeAusgeben() {
 		System.out.print("[");
-		for (int i = 0; i < this.count; i++) {
+		for (int i = 0; i < this.getAnzahl(); i++) {
 			System.out.print(this.list[i]);
-			if ((this.count - 1) != i)
+			if ((this.getAnzahl() - 1) != i)
 				System.out.print(", ");
 		}
 		System.out.println("]");
@@ -111,25 +114,25 @@ public class LoadList {
 	/**
 	 * Elemente der Liste aufsteigend Sortieren
 	 */
-	public void sortAsc() {
+	public void sortAufsteigend() {
 		Arrays.sort(this.list);
 	}
 
 	/**
 	 * Elemente der Liste absteigend Sortieren
 	 */
-	public void sortDesc() {
-		this.sortAsc();
-		this.reverse();
+	public void sortAbsteigen() {
+		this.sortAufsteigend();
+		this.umkehren();
 	}
 
 	/**
 	 * Reihenfolge der Liste umkehren
 	 */
-	public void reverse() {
+	public void umkehren() {
 		int[] neueListe = new int[this.max];
 		for (int i = (this.max - 1); i >= 0; i--)
-			neueListe[i] = this.list[(this.count - i - 1)];
+			neueListe[i] = this.list[(this.anzahl - i - 1)];
 
 		this.list = neueListe;
 	}

@@ -13,9 +13,13 @@ import java.util.Scanner;
 
 public class Tamagotchi {
 
+	/** Name des Tamagotchis **/
 	private String name;
+	/** Definiert wie satt das Tamagotchi ist 0 < satt < 1 **/
 	private double satt;
+	/** Definiert wie gluecklich das Tamagotchi ist 0 < glueck < 1 **/
 	private double glueck;
+	/** Haelt den aktuellen Status des Tamagotchis vor (lebendig/tot) **/
 	private boolean lebt;
 
 	private int gespielteRunden;
@@ -142,6 +146,7 @@ public class Tamagotchi {
 			break;
 		}
 
+		/* Abschluss der Runde */
 		this.satt -= Math.random() / 2;
 		this.glueck -= Math.random() / 2;
 		this.gespielteRunden += 1;

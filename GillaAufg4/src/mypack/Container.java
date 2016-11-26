@@ -10,20 +10,25 @@ package mypack;
 
 public class Container {
 
-	private int summe;
+	/** Aktuelles Gewicht des Containers **/
+	private int gewicht;
+	/** Maximales Gewicht des Containers **/
 	private int maxSumme;
+	/** Liste der Elemente im Container **/
 	private int[] list;
+	/** Maximale Anzahl der Elemente im Container **/
 	private int max;
-	private int count;
+	/** Aktuelle Anzahl der Elemente im Container **/
+	private int anzahl;
 
 	/**
 	 * Standard-Konstruktor
 	 */
 	public Container() {
 		this.maxSumme = 7;
-		this.summe = 0;
+		this.gewicht = 0;
 		this.list = new int[10];
-		this.count = 0;
+		this.anzahl = 0;
 		this.max = 10;
 	}
 
@@ -32,8 +37,8 @@ public class Container {
 	 * 
 	 * @return Summe
 	 */
-	public int getSumme() {
-		return this.summe;
+	public int getGewicht() {
+		return this.gewicht;
 	}
 
 	/**
@@ -41,15 +46,15 @@ public class Container {
 	 * 
 	 * @return Anzahl
 	 */
-	public int getCount() {
-		return this.count;
+	public int getAnzahl() {
+		return this.anzahl;
 	}
 
 	/**
 	 * Ausgabe der Elemente mit entsprechender Formatierung in der Konsole
 	 */
 	public void elementeAusgeben() {
-		for (int i = 0; i < this.count; i++)
+		for (int i = 0; i < this.getAnzahl(); i++)
 			System.out.print(this.list[i] + " ");
 	}
 
@@ -61,9 +66,9 @@ public class Container {
 	 * @return Hinzufuegen geklappt oder nicht
 	 */
 	public boolean add(int i) {
-		if ((this.summe + i) <= this.maxSumme && this.count < this.max) {
-			this.summe += i;
-			this.list[this.count++] = i;
+		if ((this.getGewicht() + i) <= this.maxSumme && this.anzahl < this.max) {
+			this.gewicht += i;
+			this.list[this.anzahl++] = i;
 			return true;
 		} else {
 			/*
