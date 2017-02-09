@@ -1,0 +1,35 @@
+Aufgabe 3: 9,5 Punkte
+
+Funktionalität:
+
++ Vollständig, korrekte Ausgabeformatierung
+
+- Es wurde keine objektorientierte Lösung für die Familiengründung der Tamagotchis gefunden (Code steht in der main()-Methode) (-0.25)
+
+
+
+Softwarequalität:
+
++ Gut kommentiert! Aber bitte die Einzeiler-Kommentare demnächst weglassen
+
+- Setter wurde nicht richtig verwendet, zB: ""setSatt()"" verändert den Wert statisch, nicht anhand eines Eingabewertes, wie es bei Settern üblich ist. Die Methode sollte ""fuettern"" heißen (-0.25)
+
+
+
+Aufgabe 4: 10 Punkte
+
+Funktionalität:
+
++ Vollständig/Korrekt, korrekte Ausgabeformatierung
+
++ Sehr gute objektorientierte Lösung!
+
++ Dies ist eine der wenigen Abgabe, die der Musterlösung so nahe wie möglich kam (+Sonderfall, falls nicht alle Elemente in die Container hineinpassen und das schrumpfen der Ladeliste beachtet)
+
+Super!
+
+
+
+Softwarequalität:
+
++ Gut kommentiert!

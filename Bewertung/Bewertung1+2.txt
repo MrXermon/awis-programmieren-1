@@ -1,0 +1,37 @@
+Aufgabe 1: 8,25 Punkte
+
+Funktionalität:
+
++ Vollständig, fast korrekte Ausgabeformatierung
+
+- Jahreszahlen sind nicht rechtsbündig
+
+Ausgabe und Berechnung wurden nicht getrennt (-0.25)
+
+
+
+Softwarequalität:
+
+- Mangelnde Code-Dokumentation (-0.25)
+
+- Der gesamte Code steht in der main-Methode. Methode ist dadurch viel zu lang/komplex und es ist keine sinnvolle Einteilung in Methoden gemacht worden, schlecht für die Wartung (-1.25)
+
+- Codezeilen sollten eine Länge von 120 Characters im Idealfall nicht überschreiten, um den Code auch auf kleineren Bildschirmen leserlich zu halten
+
+
+
+Aufgabe 2: 9,5 Punkte
+
+Funktionalität:
+
++ Vollständig/Korrekt, korrekte Ausgabeformatierung
+
+
+
+Softwarequalität:
+
++ Ausreichend kommentiert
+
+- Fragwürdiger Einsatz der primitiven Datentypen: Wieso überall double? Der Startwert einer Collatzfolge bsp. ist immer eine Ganzzahl, double hier überflüssig (-0.25)
+
+- Main Methode etwas zu lang/komplex. Hier wäre eine Unterteilung in mehrere einzelne Methoden sinnvoll je Funktion gewesen (-0.25)
